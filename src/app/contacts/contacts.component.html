@@ -1,0 +1,155 @@
+<div class="main_wrpr">
+  <div class="inner_block">
+    <div class="contact_filter_card" (click)="sidebarOpen('1')">
+      <div class="filter_card_left block_green">
+        <h3 class="card_name">Family Members</h3>
+        <div class="count">{{ms.family_contacts.length}}</div>
+      </div>
+      <div class="filter_card_right">
+        <div class="card_half pale_white">Your family members are listed here</div>
+        <div class="card_half bottom light_green">
+          <div class="card_action_text">Check your friends</div>
+          <i class="fas fa-chevron-right fa-2x" style="color:#2a2a2a;font-size: 1em;font-weight:600"></i>
+        </div>
+      </div>
+    </div>
+    <div class="contact_filter_card" (click)="sidebarOpen('2')">
+      <div class="filter_card_left block_yellow">
+        <h3 class="card_name">Unidentified</h3>
+        <div class="count">{{ms.fullData.length}}</div>
+      </div>
+      <div class="filter_card_right">
+        <div class="card_half pale_white">Choose your family members and their relationship with you</div>
+        <div class="card_half bottom light_yellow">
+          <div class="card_action_text">Choose from this list</div>
+          <i class="fas fa-chevron-right fa-2x" style="color:#2a2a2a;font-size: 1em;font-weight:600"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="fav_icon" (click)="redirectToListing()">
+  <div class="fav_inner_wrpr">
+    <div class="fav_wrpr">
+      <i class="fas fa-user-alt " style="color: #fff"></i>
+    </div>
+  </div>
+</div>
+<div>
+  <div id="lgMenu" [ngClass]="{'enter': sidebar==true}">
+
+    <div class="card_header" [ngClass]="{'right_align': data_display == false}">
+      <ng-template [ngIf]="data_display == false">
+        <div class="card_close" style='margin-right: 5px' (click)="close_overlay()">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+      </ng-template>
+      <h3>{{sidebar_header}}</h3>
+      <ng-template [ngIf]="data_display == true">
+        <div class="card_close" (click)="sidebarOpen()">
+          <i class="fas fa-times fa-2x"></i>
+        </div>
+      </ng-template>
+
+    </div>
+    <ng-template [ngIf]="data_display == true">
+      <div>
+        <ng-template [ngIf]="sidebar_desc">
+          <div class="sidebar_desc">
+            {{sidebar_desc}}
+          </div>
+        </ng-template>
+        <div class="search_container" [ngClass]="{'search_hidden': search_visible==false}">
+          <input type="text" class="search_input" placeholder="Search a contact" />
+          <div class="search_icon">
+            <i class="fas fa-search" style="color:#cbced2;"></i>
+          </div>
+        </div>
+
+      </div>
+      <ng-template [ngIf]="family == false">
+        <div class="contact_container" *ngFor="let contact of ms.fullData;let i = index">
+          <div class="contact_card" (click)="dataDisplay(contact,i)">
+            <div class="contact_card_left">
+              <div class="c_name">
+                {{contact.first_name}} {{contact.last_name}}
+              </div>
+              <div class="c_desc">
+                <div>
+                  <i class="fas fa-envelope" style="color:#f05c40"></i> {{contact.email}}</div>
+                <div>
+                  <i class="fa fa-phone" style="color:#f05c40"></i> {{contact.phone}}</div>
+              </div>
+
+            </div>
+            <div class="contact_card_right">
+              <i class="fas fa-arrow-right fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template [ngIf]="family == true">
+        <ng-template [ngIf]="ms.family_contacts.length > 0">
+          <div class="contact_container fam" *ngFor="let contact of ms.family_contacts">
+            <div class="contact_card" style="cursor:auto">
+              <div class="contact_card_left">
+                <div class="c_name">
+                  {{contact.first_name}} {{contact.last_name}}
+                </div>
+                <div class="c_desc">
+                  <div>
+                    <i class="fas fa-envelope" style="color:#f05c40"></i> {{contact.email}}</div>
+                  <div>
+                    <i class="fa fa-phone" style="color:#f05c40"></i> {{contact.phone}}</div>
+                </div>
+
+              </div>
+              <div class="contact_card_right bg_green">
+                {{contact.rel_type}}
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="ms.family_contacts.length == 0">
+            <div class="contact_container empty_data">
+              Nothing to show
+            </div>
+        </ng-template>
+      </ng-template>
+    </ng-template>
+
+    <ng-template [ngIf]="data_display == false">
+      <div class="main_card">
+        <h2>Who is '{{sidebar_header}}' to you?</h2>
+        <div class="c_wrpr">
+          <div class="age_wrpr">
+            <i class="age_icon">Age </i>
+            {{contact.age_limit}}</div>
+          <div>
+            <i class="fas fa-map-marker-alt" style="color:#f05c40"></i> {{contact.location}}</div>
+        </div>
+      </div>
+      <div class="rel_list_container">
+        <div class="rel_list" *ngFor="let rel of relation_list;let i = index" (click)="addRelType(i)" [ngClass]="{'rel_list_selected': rel_type == i+1}">
+          {{rel}}
+        </div>
+      </div>
+      <ng-template [ngIf]="rel_type">
+        <div class="select_btn_container">
+          <div class="select_btn" (click)="saveRelType()">
+            Select
+          </div>
+        </div>
+
+
+      </ng-template>
+
+
+    </ng-template>
+
+
+  </div>
+</div>
+<div class="overlay" [ngClass]="{'show': sidebar==true}"></div>

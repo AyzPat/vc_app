@@ -1,0 +1,5 @@
+<div class="progress_bar_wrpr">
+  <div class="circle_begin" [ngClass]="{'circle_filled': style_service.progress_circle_start==true}" ></div>
+  <div class="progress_bar" [ngClass]="{'bar_filled': style_service.progress_bar==true}"></div>
+  <div class="circle_end" [ngClass]="{'circle_filled': style_service.progress_circle_end==true,'border_colored': style_service.progress_circle_end_border==true}"></div>
+</div>

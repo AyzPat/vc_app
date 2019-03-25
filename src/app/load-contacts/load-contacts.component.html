@@ -1,0 +1,37 @@
+<div class="main_list_container">
+  <div class="main_list_wrpr">
+    <h1>Contacts</h1>
+    <div class="search_container">
+      <input type="text" class="search_input" placeholder="Search a contact" />
+      <div class="search_icon">
+        <i class="fas fa-search" style="color:#cbced2;"></i>
+      </div>
+    </div>
+    <div class="manage_list" (click)="redirectTo()">
+      Manage List
+    </div>
+    <ng-template [ngIf]="ms.family_contacts.length > 0">
+      <div class="list_wrpr">
+        <h2>Family Members ({{ms.family_contacts.length}})</h2>
+        <table>
+          <tr *ngFor="let contact of ms.family_contacts;let i = index">
+            <td>{{contact.first_name}} {{contact.last_name}} <i class="list_rel">{{contact.rel_type}}</i></td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.phone}}</td>
+          </tr>
+        </table>
+      </div>
+    </ng-template>
+    <div class="list_wrpr">
+      <h2>Unidentified ({{ms.fullData.length}})</h2>
+      <table>
+        <tr *ngFor="let contact of ms.fullData">
+          <td>{{contact.first_name}} {{contact.last_name}}</td>
+          <td>{{contact.email}}</td>
+          <td>{{contact.phone}}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

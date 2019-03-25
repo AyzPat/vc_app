@@ -1,0 +1,28 @@
+.inner_container{
+    width: 100%;    
+    padding-bottom: 25px;
+}
+.card_wrpr{
+    width:50%;
+    margin: 0 auto;
+    background-color: #fff;
+    align-items: center;
+    padding: 0 0 5px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    box-shadow: 0 10px 20px rgba(193, 192, 192, 0.19), 0 6px 6px rgba(193, 192, 192, 0.19);
+}
+.manage_wrpr{
+    display: flex;
+    justify-content: space-between;
+    width:50%;
+    margin: 0 auto;
+    align-items: center;
+    height: 35px;
+}
+.margin_wrpr{
+    margin: 50px 0 15px;
+}
+.help{
+    color:#000;
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {StylesService} from './styles-service.service'
+import {MainService} from './main-service.service'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'tele-app';
+  constructor(public style_service: StylesService,public ms:MainService) { }
 }

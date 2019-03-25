@@ -1,0 +1,13 @@
+.header_container{
+    background-color: #2dbe6d;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 25px;
+    width: calc(100% - 50px);
+    height:70px;
+}
+.header_container h2{
+    cursor: pointer;
+}
